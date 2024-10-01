@@ -75,8 +75,8 @@ function Signin() {
 
   return (
     <>
-      <main className="bg-black min-h-screen flex justify-center items-center">
-        <section className="w-[80%] h-[80vh] md:w-[32%] lg:w-[20%] mt-[4rem] m-auto">
+      <main className="bg-black  flex justify-center items-center">
+        <section className="w-[80%] h-screen md:w-[32%] lg:w-[20%] mt-[4rem] m-auto">
           <main className="text-white">
             <img
               src={logo}
@@ -90,7 +90,7 @@ function Signin() {
               <p className="mt-2">Play your favorite songs</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="mt-8">
+            <form onSubmit={handleSubmit} className="relative mt-8 z-0">
               <div>
                 <label className="font-sans text-[15px]" htmlFor="nickname">
                   Nickname

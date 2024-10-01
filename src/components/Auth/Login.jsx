@@ -75,8 +75,12 @@ function Login() {
       <section className="w-[80%] md:w-[32%] lg:w-[20%] mt-[8rem] m-auto">
         <main className="text-white">
           <img src={png} className="w-[20%] p-2 mb-2 bg-[#061417]" alt="logo" />
-          <h1 className="text-white text-[1.5rem] font-semibold">melodia</h1>
-
+          <h1 className="text-white text-[1.5rem] font-semibold">
+            welcome Back
+          </h1>
+          <div>
+            <p>Hello wecome to melodia</p>
+          </div>
           <form onSubmit={handleSubmit} className="mt-8">
             <div>
               <label className="font-sans text-[15px]" htmlFor="email">

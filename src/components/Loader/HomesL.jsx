@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function HomesL() {
   return (
     <>
-      <main className="bg-black h-screen">
+      <main className="bg-black ">
         <section className="flex w-[80%] md:w-[32%] lg:w-[20%] m-auto justify-center items-center h-[100vh]">
           <main className="h-full flex flex-col justify-between items-center">
             {/* Centered logo */}
