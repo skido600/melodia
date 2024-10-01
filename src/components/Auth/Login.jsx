@@ -39,6 +39,7 @@ function Login() {
           toast.success("Logged in successfully");
           navigate("/home");
         } else {
+          <div>Please verify your email before logging in</div>;
           toast.error("Please verify your email before logging in.");
         }
         console.log("Form submitted successfully!");

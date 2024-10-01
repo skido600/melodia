@@ -6,7 +6,10 @@ import { FaEye, FaEnvelope } from "react-icons/fa";
 import { PiLockKeyBold } from "react-icons/pi";
 import { IoEyeOff } from "react-icons/io5";
 import { validate } from "../Validate/validate";
-
+import CustomAlert, {
+  showCustomAlert,
+  closeCustomAlert,
+} from "../Loader/CustomAler";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -62,6 +65,17 @@ function Signin() {
         toast.success(
           "User created successfully. Please log in after verifying your email."
         );
+
+        // Store user nickname in Realtime Database
+        await set(ref(db, "users/" + user.uid), {
+          name,
+          email,
+          password,
+        });
+
+        toast.success(
+          "User created successfully. Please log in after verifying your email."
+        );
       } catch (error) {
         const errorMessage =
           errorMap[error.code] ||
@@ -102,7 +116,7 @@ function Signin() {
                   value={name || ""}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full text-white rounded-lg h-10 bg-black border-2 border-[#0C1A21] focus:outline-none pl-8 pr-4"
-                  placeholder="john"
+                  placeholder="John"
                 />
                 <CiUser className="relative text-gray-400 top-[-1.7rem] ml-2 bg-black" />
                 {errors.name && (
