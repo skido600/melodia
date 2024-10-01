@@ -10,16 +10,20 @@ const Signin = lazy(() => import("./components/Auth/Signin"));
 const Login = lazy(() => import("./components/Auth/Login"));
 const HomesL = lazy(() => import("./components/Loader/HomesL"));
 const Home = lazy(() => import("./components/Home"));
+const Loginm = lazy(() => import("./components/Loader/Loginm"));
+const Upload = lazy(() => import("./components/pages/Upload"));
+const Search = lazy(() => import("./components/pages/Search"));
 function App() {
   return (
     <>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<HomesL />} />
+          <Route path="/" element={<Loginm />} />
           <Route path="/sign" element={<Signin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
-          {/* Add other routes here as needed */}
+          <Route path="/search" element={<Search />} />
+          <Route path="/upload" element={<Upload />} />
         </Routes>
       </Suspense>
     </>

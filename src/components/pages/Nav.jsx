@@ -2,7 +2,7 @@ import React from "react";
 import { FaHome, FaSearch } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
 import { IoIosLogOut, IoIosSettings } from "react-icons/io";
-import melodia from "../assets/image/lolo.jpg";
+import melodia from "../../assets/image/lolo.jpg";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +14,7 @@ function Nav() {
   };
 
   return (
-    <section className="fixed bottom-0 md:p-8 p-4 gap-0 text-white z-10 bg-black w-[20%] md:w-[24%] h-screen flex flex-col justify-between">
+    <section className="fixed  bottom-0 md:p-8 p-5 gap-0 text-white z-10 md:bg-[#121212] w-[23%] md:w-[24%] h-screen flex flex-col justify-between">
       <div>
         <div
           onClick={() => handleNavigation("/")}
@@ -23,13 +23,13 @@ function Nav() {
           <img
             src={melodia}
             alt="logo"
-            className="w-16 rounded-sm mb-6 object-cover"
+            className="md:w-16 w-[10rem]   rounded-sm mb-4 object-cover"
           />
           <h2 className="hidden lg:block text-green-400 text-4xl font-bold">
             Melodia
           </h2>
         </div>
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-4 mt-4">
           <div
             className="flex items-center space-x-2 cursor-pointer"
             onClick={() => handleNavigation("/")}
@@ -47,11 +47,11 @@ function Nav() {
               size={30}
               className="hover:text-green-400 cursor-pointer"
             />
-            <p className="hidden md:block">Search</p>
+            <p className="hidden md:font-bold md:block">Search</p>
           </div>
           <div className="flex items-center space-x-2 cursor-pointer">
             <FiUser size={30} className="hover:text-green-400 cursor-pointer" />
-            <p className="hidden md:block">Profile</p>
+            <p className="hidden  md:font-bold  md:block">Profile</p>
           </div>
           <div
             className="flex items-center space-x-2 cursor-pointer"
@@ -61,7 +61,7 @@ function Nav() {
               size={30}
               className="hover:text-green-400 cursor-pointer"
             />
-            <p className="hidden md:block">Upload</p>
+            <p className="hidden  md:font-bold  md:block">Upload</p>
           </div>
         </div>
       </div>
@@ -71,11 +71,11 @@ function Nav() {
             size={30}
             className="hover:text-green-400 cursor-pointer"
           />
-          <p className="hidden md:block">Settings</p>
+          <p className="hidden  md:font-bold  md:block">Settings</p>
         </div>
         <div className="flex items-center space-x-2 cursor-pointer">
           <IoIosLogOut size={30} className="hover:text-green-400" />
-          <p className="hidden md:block">Logout</p>
+          <p className="hidden  md:font-bold  md:block">Logout</p>
         </div>
       </div>
     </section>
