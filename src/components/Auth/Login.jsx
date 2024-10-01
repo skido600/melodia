@@ -73,7 +73,7 @@ function Login() {
 
   return (
     <main className="bg-black min-h-screen flex justify-center items-center">
-      <section className="w-[80%] md:w-[32%] lg:w-[20%] mt-[8rem] m-auto">
+      <section className="w-[80%] md:w-[32%] lg:w-[20%] lg:mt-[8rem]  md:mt-[16rem] m-auto">
         <main className="text-white">
           <img src={png} className="w-[20%] p-2 mb-2 bg-[#061417]" alt="logo" />
           <h1 className="text-white text-[1.5rem] font-semibold">

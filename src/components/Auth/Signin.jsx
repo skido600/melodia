@@ -90,7 +90,7 @@ function Signin() {
   return (
     <>
       <main className="bg-black  flex justify-center items-center">
-        <section className="w-[80%] h-screen md:w-[32%] lg:w-[20%] mt-[4rem] m-auto">
+        <section className="w-[80%]  md:w-[35%] lg:w-[20%] lg:mt-[6.4rem]  mt-[4rem] md:mt-[16rem] m-auto">
           <main className="text-white">
             <img
               src={logo}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase/config";
+import { auth } from "../Firebase/ultil";
 import Rolling from "./Rolling";
 import Home from "../Home";
 import HomesL from "./HomesL";
