@@ -36,10 +36,7 @@ function Nav() {
               Home
             </p>
           </div>
-          <div
-            onClick={() => handleNavigation("/search")}
-            className="md:flex items-center space-x-2 cursor-pointer"
-          >
+          <div className="md:flex items-center space-x-2 cursor-pointer">
             <CiSearch
               size={30}
               className="hover:text-green-400 text-[#D1D5DB]"
