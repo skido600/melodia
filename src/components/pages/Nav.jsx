@@ -1,9 +1,6 @@
 import React from "react";
-import { FaHome, FaSearch } from "react-icons/fa";
-import { FiUser } from "react-icons/fi";
-import { IoIosLogOut, IoIosSettings } from "react-icons/io";
+import { CiHome, CiSearch, CiUser, CiExport, CiLogin } from "react-icons/ci";
 import melodia from "../../assets/image/lolo.jpg";
-import { MdOutlineFileUpload } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
 function Nav() {
@@ -14,7 +11,7 @@ function Nav() {
   };
 
   return (
-    <section className="fixed  bottom-0  p-8  pb-8 gap-0 text-white z-10 md:bg-[#121212] w-[25%] h-screen flex flex-col justify-between">
+    <section className="fixed bottom-0 p-6 pb-8 gap-0 text-white z-10 md:bg-[#121212] w-[25%] h-screen flex flex-col justify-between">
       <div>
         <div
           onClick={() => handleNavigation("/")}
@@ -23,19 +20,19 @@ function Nav() {
           <img
             src={melodia}
             alt="logo"
-            className="md:w-16 w-[30rem]   rounded-sm mb-4 object-cover"
+            className="md:w-16  rounded-sm mb-4 object-cover"
           />
           <h2 className="hidden lg:block text-green-400 text-4xl font-bold">
             Melodia
           </h2>
         </div>
-        <div className="flex flex-col space-y-4 -4">
+        <div className="flex flex-col space-y-4">
           <div
             className="md:flex items-center space-x-2 cursor-pointer"
             onClick={() => handleNavigation("/")}
           >
-            <FaHome size={30} className="text-green-400" />
-            <p className="hidden md:block text-green-400 text-xl font-bold">
+            <CiHome size={30} className="text-green-400 w-8 h-8" />
+            <p className="hidden md:block  text-green-400 text-xl font-bold">
               Home
             </p>
           </div>
@@ -43,40 +40,47 @@ function Nav() {
             onClick={() => handleNavigation("/search")}
             className="md:flex items-center space-x-2 cursor-pointer"
           >
-            <FaSearch
+            <CiSearch
               size={30}
-              className="hover:text-green-400 cursor-pointer"
+              className="hover:text-green-400 text-[#D1D5DB]"
             />
-            <p className="hidden md:font-bold md:block">Search</p>
+            <p className="hidden text-[#D1D5DB] text-[20px]   font-bold md:block">
+              Search
+            </p>
           </div>
           <div className="md:flex items-center space-x-2 cursor-pointer">
-            <FiUser size={30} className="hover:text-green-400 cursor-pointer" />
-            <p className="hidden  md:font-bold  md:block">Profile</p>
+            <CiUser
+              size={30}
+              className="hover:text-green-400 text-[#D1D5DB]s"
+            />
+            <p className="hidden font-bold text-[#D1D5DB] text-[20px] md:block">
+              Profile
+            </p>
           </div>
           <div
             className="md:flex items-center space-x-2 cursor-pointer"
             onClick={() => handleNavigation("/upload")}
           >
-            <MdOutlineFileUpload
+            <CiExport
               size={30}
-              className="hover:text-green-400 cursor-pointer"
+              className="hover:text-green-400 font-thin text-[#D1D5DB]"
             />
-            <p className="hidden  md:font-bold  md:block">Upload</p>
+            <p className="hidden text-[#D1D5DB] font-bold text-[20px]  md:block">
+              Upload
+            </p>
           </div>
         </div>
       </div>
       <div className="grid gap-2 items-center space-y-2">
-        {/* <div className="flex items-center space-x-2 cursor-pointer">
-          <IoIosSettings
-            size={30}
-            className="hover:text-green-400 cursor-pointer"
-          />
-          <p className="hidden  md:font-bold  md:block">Settings</p>
-        </div> */}
         <Link to="login">
-          <div className="md:flex items-center  gap-4 cursor-pointer">
-            <IoIosLogOut size={30} className="hover:text-green-400" />
-            <p className="hidden  md:font-bold  md:block">Logout</p>
+          <div className="md:flex items-center  space-x-2  cursor-pointer">
+            <CiLogin
+              size={30}
+              className="hover:text-green-400 text-[#D1D5DB]"
+            />
+            <p className="hidden text-[#D1D5DB] text-[20px] font-bold md:block">
+              Logout
+            </p>
           </div>
         </Link>
       </div>

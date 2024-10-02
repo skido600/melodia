@@ -20,7 +20,7 @@ function Recent() {
             />
             <div className="text mt-4 ml-4">
               <p className="text-white text-xl font-bold">Alec Benja..</p>
-              <p className="text-white text-[10px]  md:text-[15px]">
+              <p className="text-[#D1D5DB] text-[10px]  md:text-[15px]">
                 Uploaded by wave
               </p>
             </div>
@@ -33,7 +33,7 @@ function Recent() {
             />
             <div className="text mt-4 ml-4">
               <p className="text-white text-xl font-bold">Alec Benja..</p>
-              <p className="text-white text-[10px]  md:text-[15px]">
+              <p className="text-[#D1D5DB] text-[10px]  md:text-[15px]">
                 Uploaded by wave
               </p>
             </div>
@@ -46,7 +46,7 @@ function Recent() {
             />
             <div className="text mt-4 ml-4">
               <p className=" text-white text-xl font-bold">Alec Benja..</p>
-              <p className="text-white text-[10px]  md:text-[15px]">
+              <p className="text-[#D1D5DB] text-[10px]  md:text-[15px]">
                 Uploaded by wave
               </p>
             </div>
@@ -59,7 +59,7 @@ function Recent() {
             />
             <div className="text mt-4 ml-4">
               <p className=" text-white text-xl font-bold">Alec Benja..</p>
-              <p className="text-white text-[10px]  md:text-[15px]">
+              <p className="text-[#D1D5DB] text-[10px]  md:text-[15px]">
                 Uploaded by wave
               </p>
             </div>
@@ -72,7 +72,7 @@ function Recent() {
             />
             <div className="text mt-4 ml-4">
               <p className=" text-white text-xl font-bold">Alec Benja..</p>
-              <p className="text-white text-[10px]  md:text-[15px]">
+              <p className="text-[#D1D5DB] text-[10px]  md:text-[15px]">
                 Uploaded by wave
               </p>
             </div>
@@ -85,7 +85,7 @@ function Recent() {
             />
             <div className="text mt-4 ml-4">
               <p className="text-white text-xl font-bold">Alec Benja..</p>
-              <p className="text-white text-[10px]  md:text-[15px] ">
+              <p className="text-[#D1D5DB] text-[10px]  md:text-[15px] ">
                 Uploaded by wave
               </p>
             </div>
@@ -98,7 +98,7 @@ function Recent() {
             />
             <div className="text mt-4 ml-4">
               <p className="text-white text-xl font-bold">Alec Benja..</p>
-              <p className="text-white text-[10px]  md:text-[15px]">
+              <p className="text-[#D1D5DB] text-[10px]  md:text-[15px]">
                 Uploaded by wave
               </p>
             </div>

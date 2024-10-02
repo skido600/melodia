@@ -42,7 +42,7 @@ function Home() {
             />
           </nav>
 
-          <div className=" P-2 md:ml-4 mt-[5rem]">
+          <div className=" P-2 md:ml-4 mt-[5rem] h-[80vh] overflow-y-auto">
             <Recent />
             <Top />
             <Developers />
