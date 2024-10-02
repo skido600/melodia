@@ -20,7 +20,7 @@ function Home() {
           <Nav />
         </div>
 
-        <section className={`col-span-3 ${toggle && "col-span-4 ml-4"}`}>
+        <section className={`col-span-3 ${toggle && "col-span-4 ml-[1.4rem]"}`}>
           <nav className="text-white  flex justify-between  z-20 bg-black p-2 ">
             <div className="flex gap-4">
               <button className="text-lg mb-2 border-green-600 border-b-4 rounded-md cursor-pointer focus:outline-none">

@@ -4,7 +4,7 @@ import { FiUser } from "react-icons/fi";
 import { IoIosLogOut, IoIosSettings } from "react-icons/io";
 import melodia from "../../assets/image/lolo.jpg";
 import { MdOutlineFileUpload } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Nav() {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ function Nav() {
           <img
             src={melodia}
             alt="logo"
-            className="md:w-16 w-[10rem]   rounded-sm mb-4 object-cover"
+            className="md:w-16 w-[20rem]   rounded-sm mb-4 object-cover"
           />
           <h2 className="hidden lg:block text-green-400 text-4xl font-bold">
             Melodia
@@ -73,10 +73,12 @@ function Nav() {
           />
           <p className="hidden  md:font-bold  md:block">Settings</p>
         </div>
-        <div className="flex items-center space-x-2 cursor-pointer">
-          <IoIosLogOut size={30} className="hover:text-green-400" />
-          <p className="hidden  md:font-bold  md:block">Logout</p>
-        </div>
+        <Link to="login">
+          <div className="flex items-center space-x-2 cursor-pointer">
+            <IoIosLogOut size={30} className="hover:text-green-400" />
+            <p className="hidden  md:font-bold  md:block">Logout</p>
+          </div>
+        </Link>
       </div>
     </section>
   );

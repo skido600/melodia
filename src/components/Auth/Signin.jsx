@@ -70,7 +70,6 @@ function Signin() {
         await set(ref(db, "users/" + user.uid), {
           name,
           email,
-          password,
         });
 
         toast.success(
@@ -90,7 +89,7 @@ function Signin() {
   return (
     <>
       <main className="bg-black  flex justify-center items-center">
-        <section className="w-[80%]  md:w-[35%] lg:w-[20%] lg:mt-[6.4rem]  mt-[4rem] md:mt-[16rem] m-auto">
+        <section className="w-[80%]   lg:w-[26%] lg:mt-[6.4rem]  mt-[4rem]  m-auto">
           <main className="text-white">
             <img
               src={logo}
@@ -105,6 +104,7 @@ function Signin() {
             </div>
 
             <form onSubmit={handleSubmit} className="relative mt-8 z-0">
+              <div></div>
               <div>
                 <label className="font-sans text-[15px]" htmlFor="nickname">
                   Nickname
