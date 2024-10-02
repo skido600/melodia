@@ -11,7 +11,7 @@ function Top() {
       <div className="mt-8 flex  space-x-4">
         <h1 className="text-white text-[18px] md:text-3xl">Top six</h1>
       </div>
-      <main className="flex space-x-4 overflow-x-auto md:p-4">
+      <main className="flex space-x-4 overflow-x-auto py-4">
         <article className="mt-4 flex-shrink-0 w-[150px]">
           <img
             src={pn7}

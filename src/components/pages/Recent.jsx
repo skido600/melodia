@@ -11,7 +11,7 @@ function Recent() {
         </h1>
       </div>
       <div className="">
-        <main className="flex space-x-4 overflow-x-auto scrollbar overflow-y-hidden md:p-4 ">
+        <main className="flex space-x-4 overflow-x-auto scrollbar overflow-y-hidden py-4 ">
           <article className="mt-4 flex-shrink-0 w-[150px]">
             <img
               src={PNG}
