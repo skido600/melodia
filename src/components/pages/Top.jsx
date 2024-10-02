@@ -11,10 +11,23 @@ function Top() {
       <div className="mt-8 flex  space-x-4">
         <h1 className="text-white text-[18px] md:text-3xl">Top six</h1>
       </div>
-      <main className="flex space-x-4 overflow-x-auto scrollbar-hidden wrapper">
+      <main className="flex space-x-4 overflow-x-auto md:p-4">
         <article className="mt-4 flex-shrink-0 w-[150px]">
           <img
             src={pn7}
+            alt="BY"
+            className="w-full h-[20vh] md:h-[10rem] object-cover rounded-2xl"
+          />
+          <div className="text mt-4 ml-4">
+            <p className=" text-white text-xl font-bold">Alec Benja..</p>
+            <p className="text-white text-[10px]   md:text-[15px] ">
+              Uploaded by wave
+            </p>
+          </div>
+        </article>
+        <article className="mt-4 flex-shrink-0 w-[150px]">
+          <img
+            src={pn6}
             alt="BY"
             className="w-full h-[20vh] md:h-[10rem] object-cover rounded-2xl"
           />
@@ -33,7 +46,7 @@ function Top() {
           />
           <div className="text mt-4 ml-4">
             <p className=" text-white text-xl font-bold">Alec Benja..</p>
-            <p className="text-white text-[10px]  md:text-[15px]">
+            <p className="text-white text-[10px]   md:text-[15px] ">
               Uploaded by wave
             </p>
           </div>
@@ -46,7 +59,7 @@ function Top() {
           />
           <div className="text mt-4 ml-4">
             <p className=" text-white text-xl font-bold">Alec Benja..</p>
-            <p className="text-white text-[10px]  md:text-[15px]">
+            <p className="text-white text-[10px]  md:text-[15px]  ">
               Uploaded by wave
             </p>
           </div>
@@ -59,20 +72,7 @@ function Top() {
           />
           <div className="text mt-4 ml-4">
             <p className=" text-white text-xl font-bold">Alec Benja..</p>
-            <p className="text-white text-[10px]  md:text-[15px]">
-              Uploaded by wave
-            </p>
-          </div>
-        </article>
-        <article className="mt-4 flex-shrink-0 w-[150px]">
-          <img
-            src={pn6}
-            alt="BY"
-            className="w-full h-[20vh] md:h-[10rem] object-cover rounded-2xl"
-          />
-          <div className="text mt-4 ml-4">
-            <p className=" text-white text-xl font-bold">Alec Benja..</p>
-            <p className="text-white text-[10px]  md:text-[15px]">
+            <p className="text-white text-[10px]  md:text-[15px] ">
               Uploaded by wave
             </p>
           </div>
@@ -85,7 +85,7 @@ function Top() {
           />
           <div className="text mt-4 ml-4">
             <p className=" text-white text-xl font-bold">Alec Benja..</p>
-            <p className="text-white text-[10px]  md:text-[15px]">
+            <p className="text-white text-[10px]   md:text-[15px] ">
               Uploaded by wave
             </p>
           </div>
@@ -98,7 +98,7 @@ function Top() {
           />
           <div className="text mt-4 ml-4">
             <p className=" text-white text-xl font-bold">Alec Benja..</p>
-            <p className="text-white text-[10px]  md:text-[15px]">
+            <p className="text-white text-[10px]  md:text-[15px]  ">
               Uploaded by wave
             </p>
           </div>

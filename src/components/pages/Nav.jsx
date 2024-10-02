@@ -14,24 +14,24 @@ function Nav() {
   };
 
   return (
-    <section className="fixed  bottom-0 md:p-8 p-5 gap-0 text-white z-10 md:bg-[#121212] w-[23%] md:w-[24%] h-screen flex flex-col justify-between">
+    <section className="fixed  bottom-0  p-8  pb-8 gap-0 text-white z-10 md:bg-[#121212] w-[25%] h-screen flex flex-col justify-between">
       <div>
         <div
           onClick={() => handleNavigation("/")}
-          className="flex items-start space-x-2 cursor-pointer"
+          className="md:flex items-start space-x-2 cursor-pointer"
         >
           <img
             src={melodia}
             alt="logo"
-            className="md:w-16 w-[20rem]   rounded-sm mb-4 object-cover"
+            className="md:w-16 w-[30rem]   rounded-sm mb-4 object-cover"
           />
           <h2 className="hidden lg:block text-green-400 text-4xl font-bold">
             Melodia
           </h2>
         </div>
-        <div className="flex flex-col space-y-4 mt-4">
+        <div className="flex flex-col space-y-4 -4">
           <div
-            className="flex items-center space-x-2 cursor-pointer"
+            className="md:flex items-center space-x-2 cursor-pointer"
             onClick={() => handleNavigation("/")}
           >
             <FaHome size={30} className="text-green-400" />
@@ -41,7 +41,7 @@ function Nav() {
           </div>
           <div
             onClick={() => handleNavigation("/search")}
-            className="flex items-center space-x-2 cursor-pointer"
+            className="md:flex items-center space-x-2 cursor-pointer"
           >
             <FaSearch
               size={30}
@@ -49,12 +49,12 @@ function Nav() {
             />
             <p className="hidden md:font-bold md:block">Search</p>
           </div>
-          <div className="flex items-center space-x-2 cursor-pointer">
+          <div className="md:flex items-center space-x-2 cursor-pointer">
             <FiUser size={30} className="hover:text-green-400 cursor-pointer" />
             <p className="hidden  md:font-bold  md:block">Profile</p>
           </div>
           <div
-            className="flex items-center space-x-2 cursor-pointer"
+            className="md:flex items-center space-x-2 cursor-pointer"
             onClick={() => handleNavigation("/upload")}
           >
             <MdOutlineFileUpload
@@ -66,15 +66,15 @@ function Nav() {
         </div>
       </div>
       <div className="grid gap-2 items-center space-y-2">
-        <div className="flex items-center space-x-2 cursor-pointer">
+        {/* <div className="flex items-center space-x-2 cursor-pointer">
           <IoIosSettings
             size={30}
             className="hover:text-green-400 cursor-pointer"
           />
           <p className="hidden  md:font-bold  md:block">Settings</p>
-        </div>
+        </div> */}
         <Link to="login">
-          <div className="flex items-center space-x-2 cursor-pointer">
+          <div className="md:flex items-center  gap-4 cursor-pointer">
             <IoIosLogOut size={30} className="hover:text-green-400" />
             <p className="hidden  md:font-bold  md:block">Logout</p>
           </div>

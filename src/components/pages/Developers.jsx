@@ -8,7 +8,7 @@ function Developers() {
       <div className="flex space-x-4 ml-[0.8rem] mt-4">
         <h1 className="text-white text-[18px] md:text-3xl">Developers</h1>
       </div>
-      <footer className="flex  overflow-x-auto scrollbar-hidden   p-4 wrapper text-white">
+      <footer className="flex  overflow-x-auto p-2  md:p-4 wrapper text-white">
         <div className=" ml-4 items-center flex gap-3  ">
           <div className="w-[150px]">
             <img

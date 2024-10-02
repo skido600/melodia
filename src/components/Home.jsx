@@ -15,13 +15,17 @@ function Home() {
   console.log(toggle);
   return (
     <>
-      <main className="grid grid-cols-4">
+      <main className="grid  grid-cols-4">
         <div className={` ${toggle ? "hidden" : "col-span-1"} `}>
           <Nav />
         </div>
 
         <section className={`col-span-3 ${toggle && "col-span-4 ml-[1.4rem]"}`}>
-          <nav className="text-white  flex justify-between  z-20 bg-black p-2 ">
+          <nav
+            className={`text-white fixed   ${
+              toggle ? "w-[95vw]" : " px-4 w-[75vw]"
+            } flex justify-between  z-20 bg-black p-2 `}
+          >
             <div className="flex gap-4">
               <button className="text-lg mb-2 border-green-600 border-b-4 rounded-md cursor-pointer focus:outline-none">
                 Explore
@@ -38,7 +42,7 @@ function Home() {
             />
           </nav>
 
-          <div className=" P-2">
+          <div className=" P-2 md:ml-4 mt-[5rem]">
             <Recent />
             <Top />
             <Developers />

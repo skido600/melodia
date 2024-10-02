@@ -72,7 +72,7 @@ function Login() {
   };
 
   return (
-    <main className="bg-black min-h-screen flex justify-center items-center">
+    <main className="bg-black flex justify-center items-center">
       <section className="w-[80%]   lg:w-[26%] lg:mt-[6.4rem]  mt-[4rem]  m-auto">
         <main className="text-white">
           <img src={png} className="w-[20%] p-2 mb-2 bg-[#061417]" alt="logo" />
