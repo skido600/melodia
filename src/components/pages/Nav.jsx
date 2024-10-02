@@ -11,7 +11,7 @@ function Nav() {
   };
 
   return (
-    <section className="fixed   text-white  md:bg-[#121212] w-[25%] top-0 bottom-0 p-4 flex flex-col justify-between">
+    <section className="fixed   text-white  md:bg-[#121212] w-[25%] top-0 bottom-0 p-5 flex flex-col justify-between">
       <div className="">
         <div
           onClick={() => handleNavigation("/")}
@@ -48,7 +48,10 @@ function Nav() {
               Search
             </p>
           </div>
-          <div className="md:flex items-center space-x-2 cursor-pointer">
+          <div
+            onClick={() => handleNavigation("/user")}
+            className="md:flex items-center space-x-2 cursor-pointer"
+          >
             <CiUser
               size={30}
               className="hover:text-green-400 text-[#D1D5DB]s"

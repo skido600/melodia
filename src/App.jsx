@@ -13,6 +13,7 @@ const Home = lazy(() => import("./components/Home"));
 const Loginm = lazy(() => import("./components/Loader/Loginm"));
 const Upload = lazy(() => import("./components/pages/Upload"));
 const Search = lazy(() => import("./components/pages/Search"));
+const Profile = lazy(() => import("./components/pages/Profile"));
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/user" element={<Profile />} />
         </Routes>
       </Suspense>
     </>
