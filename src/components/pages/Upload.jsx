@@ -4,7 +4,7 @@ import Nav from "./Nav";
 function Upload() {
   return (
     <>
-      <main className="grid grid-cols-4">
+      <main className="grid grid-cols-4 bg-black">
         <div className="col-span-1">
           <Nav />
         </div>

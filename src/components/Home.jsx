@@ -15,7 +15,7 @@ function Home() {
   console.log(toggle);
   return (
     <>
-      <main className="grid  grid-cols-4">
+      <main className="grid bg-black  grid-cols-4">
         <div className={` ${toggle ? "hidden" : "col-span-1 h-screen"} `}>
           <Nav />
         </div>

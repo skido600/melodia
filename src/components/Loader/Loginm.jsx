@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../Firebase/ultil";
-import Rolling from "./Rolling";
+
 import Home from "../Home";
 import HomesL from "./HomesL";
+import Loader from "./Loader";
 
 function Loginm() {
   const [loader, setLoader] = useState(true); // State to manage loading screen
@@ -35,7 +36,7 @@ function Loginm() {
   }, []);
 
   if (loader) {
-    return <Rolling />;
+    return <Loader />;
   }
 
   if (isActive) {

@@ -16,7 +16,7 @@ function Profile() {
 
   return (
     <>
-      <main className="grid grid-cols-4">
+      <main className="grid grid-cols-4 bg-black h-screen">
         <div className="col-span-1">
           <Nav />
         </div>
