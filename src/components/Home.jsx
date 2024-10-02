@@ -16,7 +16,7 @@ function Home() {
   return (
     <>
       <main className="grid  grid-cols-4">
-        <div className={` ${toggle ? "hidden" : "col-span-1"} `}>
+        <div className={` ${toggle ? "hidden" : "col-span-1 h-screen"} `}>
           <Nav />
         </div>
 

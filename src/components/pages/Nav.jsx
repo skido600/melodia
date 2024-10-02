@@ -11,7 +11,7 @@ function Nav() {
   };
 
   return (
-    <section className="fixed bottom-0 p-6 pb-8 gap-0 text-white z-10 md:bg-[#121212] w-[25%] h-screen flex flex-col justify-between">
+    <section className="fixed bottom-0 p-6  gap-0 text-white z-10 md:bg-[#121212] w-[25%] h-screen flex flex-col justify-between">
       <div>
         <div
           onClick={() => handleNavigation("/")}
