@@ -8,7 +8,7 @@ import pn7 from "../../assets/image/images (1).jfif";
 function Top() {
   return (
     <>
-      <div className="mt-8 flex  space-x-4">
+      <div className="mt-4 flex  space-x-4">
         <h1 className="text-white text-[18px] md:text-3xl">Top six</h1>
       </div>
       <main className="flex space-x-4 overflow-x-auto py-4">

@@ -11,8 +11,8 @@ function Nav() {
   };
 
   return (
-    <section className="fixed bottom-0 p-6  gap-0 text-white z-10 md:bg-[#121212] w-[25%] h-screen flex flex-col justify-between">
-      <div>
+    <section className="fixed   text-white  md:bg-[#121212] w-[25%] top-0 bottom-0 p-4 flex flex-col justify-between">
+      <div className="">
         <div
           onClick={() => handleNavigation("/")}
           className="md:flex items-start space-x-2 cursor-pointer"
