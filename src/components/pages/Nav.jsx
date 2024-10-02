@@ -20,7 +20,7 @@ function Nav() {
           <img
             src={melodia}
             alt="logo"
-            className="md:w-16  rounded-sm mb-4 object-cover"
+            className="md:w-16 h-[40px] w-[45px]  rounded-sm mb-4 object-cover"
           />
           <h2 className="hidden lg:block text-green-400 text-4xl font-bold">
             Melodia
