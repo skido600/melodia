@@ -20,7 +20,11 @@ function Home() {
           <Nav />
         </div>
 
-        <section className={`col-span-3 ${toggle && "col-span-4 ml-[1.4rem]"}`}>
+        <section
+          className={`col-span-3 ${
+            toggle && "col-span-4 h-screen ml-[1.4rem]"
+          }`}
+        >
           <nav
             className={`text-white fixed   ${
               toggle ? "w-[95vw]" : " px-4 w-[75vw]"

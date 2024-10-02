@@ -13,10 +13,7 @@ function Upload() {
           <section className="flex flex-col overflow-hidden gap-[20px] h-[100vh] mt-[0px] my-[10px]">
             <main>
               <div className="ml-[16px]">
-                <div
-                  className="mt-[50px] md:w-[70%] mx-auto"
-                  style={{ opacity: 1, transform: "none" }}
-                >
+                <div className="mt-[50px] md:w-[70%] mx-auto">
                   <div className="flex cursor-pointer flex-col">
                     <h1 className="font-bold font-custom ml-[10px] text-white md:text-[1.5em]">
                       Upload Music:
