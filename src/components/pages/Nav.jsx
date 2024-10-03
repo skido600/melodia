@@ -72,7 +72,7 @@ function Nav() {
         </div>
       </div>
       <div className="grid gap-2 items-center space-y-2">
-        <Link to="login">
+        <Link to="/login">
           <div className="md:flex items-center  space-x-2  cursor-pointer">
             <CiLogin
               size={30}

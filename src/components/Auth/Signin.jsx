@@ -57,8 +57,7 @@ function Signin() {
       try {
         const userCredential = await createUserWithEmailAndPassword(
           auth,
-          email,
-          password
+          email
         );
         const user = userCredential.user;
         await sendEmailVerification(user);
@@ -88,7 +87,7 @@ function Signin() {
 
   return (
     <>
-      <main className="bg-black  flex justify-center items-center">
+      <main className="bg-black min-h-screen flex justify-center items-center">
         <section className="w-[80%]   lg:w-[26%] lg:mt-[6.4rem]  mt-[4rem]  m-auto">
           <main className="text-white">
             <img
