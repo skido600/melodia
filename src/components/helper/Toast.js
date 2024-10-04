@@ -5,7 +5,7 @@ export const showWarning = (message) => {
   toast(message, {
     style: {
       background: "red", // Custom background color for warning
-      color: "#ffffff", // Custom text color
+      color: "#e0de35", // Custom text color
     },
     duration: 5000, // Duration in milliseconds
   });

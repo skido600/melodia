@@ -6,10 +6,11 @@ import { FaEye, FaEnvelope } from "react-icons/fa";
 import { PiLockKeyBold } from "react-icons/pi";
 import { IoEyeOff } from "react-icons/io5";
 import { validate } from "../Validate/validate";
-import CustomAlert, {
-  showCustomAlert,
-  closeCustomAlert,
-} from "../Loader/CustomAler";
+
+// import CustomAlert, {
+//   showCustomAlert,
+//   closeCustomAlert,
+// } from "../Loader/CustomAler";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -18,6 +19,7 @@ import { auth, db } from "../Firebase/ultil";
 import { ref, set } from "firebase/database";
 import toast from "react-hot-toast";
 import Rolling from "../Loader/Rolling";
+
 const errorMap = {
   "auth/invalid-email": "The email address is badly formatted.",
   "auth/email-already-in-use":
@@ -39,7 +41,18 @@ const errorMap = {
   "auth/popup-blocked":
     "The popup was blocked by the browser. Please allow popups and try again.",
   "auth/too-many-requests": "Too many requests. Please try again later.",
+  "auth/network-request-failed":
+    "Network error. Please check your internet connection.",
+  "auth/user-not-found": "No user found with this email. Please sign up first.",
+  "auth/wrong-password": "Incorrect password. Please try again.",
+  "auth/email-already-in-use":
+    "The email address is already in use by another account. Try using a different email or reset your password.",
+  "auth/invalid-credential":
+    "The authentication credential is invalid or has expired.",
+  "auth/invalid-verification-code": "The verification code is invalid.",
+  "auth/invalid-verification-id": "The verification ID is invalid.",
 };
+
 function Signin() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -51,13 +64,13 @@ function Signin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate(email, password, name, setErrors);
-    setLoader(true);
     if (isValid) {
-      console.log("Form submitted successfully!");
+      setLoader(true);
       try {
         const userCredential = await createUserWithEmailAndPassword(
           auth,
-          email
+          email,
+          password
         );
         const user = userCredential.user;
         await sendEmailVerification(user);
@@ -71,16 +84,16 @@ function Signin() {
           email,
         });
 
-        toast.success(
-          "User created successfully. Please log in after verifying your email."
-        );
+        toast.success("User created successfully.");
       } catch (error) {
+        console.log("Error Code:", error.code); // Log error code
+        console.log("Error Message:", error.message); // Log detailed error message
         const errorMessage =
           errorMap[error.code] ||
           "Error signing up. Check your internet connection.";
         toast.error(errorMessage);
       } finally {
-        setLoader(false);
+        setLoader(false); // Stop loader after submission
       }
     }
   };
@@ -88,7 +101,7 @@ function Signin() {
   return (
     <>
       <main className="bg-black min-h-screen flex justify-center items-center">
-        <section className="w-[80%]   lg:w-[26%] lg:mt-[6.4rem]  mt-[4rem]  m-auto">
+        <section className="w-[80%] lg:w-[26%] lg:mt-[6.4rem] mt-[4rem] m-auto">
           <main className="text-white">
             <img
               src={logo}
@@ -184,7 +197,7 @@ function Signin() {
                   type="submit"
                   className="bg-green-600 rounded-full text-white w-full py-2 text-[15px]"
                 >
-                  sign up
+                  {loader ? "Signing in..." : "Sign In"}
                 </button>
               </div>
 
