@@ -4,8 +4,8 @@ import { toast } from "react-hot-toast";
 export const showWarning = (message) => {
   toast(message, {
     style: {
-      background: "red", // Custom background color for warning
-      color: "#e0de35", // Custom text color
+      background: "#e0de35",
+      color: "white", // Custom text color
     },
     duration: 5000, // Duration in milliseconds
   });

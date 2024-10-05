@@ -1,29 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { showError, showSuccess, showWarning } from "../helper/Toast";
+import { db, auth, storage, firestore } from "../Firebase/ultil"; // Ensure firestore is imported
+import Nav from "./Nav";
 import {
   ref as storageRef,
   uploadBytes,
   getDownloadURL,
 } from "firebase/storage";
 import { ref as dbRef, get } from "firebase/database";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-// import { getAuth } from "firebase/auth";
-import { showError, showSuccess, showWarning } from "../helper/Toast";
-import { db, auth, storage } from "../Firebase/ultil"; // Adjust the path if necessary
-import Nav from "./Nav";
 
 function Upload() {
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
 
-  const user = auth.currentUser; // Get the current user
+  const [user, setUser] = useState(null);
 
-  // Handle file input change
+  useEffect(() => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      setUser(currentUser);
+    }
+  }, []);
+
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-    setFile(selectedFile);
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
   };
 
-  // Handle the file upload process
   const handleUpload = async () => {
     if (!file) return;
 
@@ -34,43 +40,43 @@ function Upload() {
     }
 
     if (!user) {
-      showError("User is not authenticated");
+      showWarning("User is not authenticated");
       return;
     }
 
     setIsUploading(true);
 
-    // Upload file to Firebase Storage
-    const storageReference = storageRef(storage, `uploads/${file.name}`);
     try {
-      const snapshot = await uploadBytes(storageReference, file);
-      const downloadURL = await getDownloadURL(snapshot.ref);
-      showSuccess("Uploaded file successfully");
+      // Step 1: Upload the file to Firebase Cloud Storage
+      const storagePath = storageRef(storage, `music/${user.uid}_${file.name}`); // Unique naming
+      await uploadBytes(storagePath, file);
 
-      // Fetch username from Realtime Database
+      // Step 2: Get the download URL
+      const downloadURL = await getDownloadURL(storagePath);
+
+      // Fetch username from Realtime Database (if needed)
       const userRef = dbRef(db, `users/${user.uid}`);
       const userSnapshot = await get(userRef);
       const username = userSnapshot.exists()
         ? userSnapshot.val().name
         : "Unknown User";
 
-      console.log(userSnapshot.val().name);
-      // Add metadata to Firestore
+      // Step 3: Prepare metadata for Firestore
       const musicData = {
         username: username,
         uid: user.uid,
         uploadLink: downloadURL,
         timestamp: serverTimestamp(),
-        rank: 0, // Customize this logic as needed
-        status: "uploaded",
+        rank: 0,
+        status: "public",
       };
 
-      console.log(musicData);
-      // Store metadata in Firestore under 'AllMusics/musiccollection'
-      const musicDocRef = doc(db, `AllMusics/musiccollection/${file.name}`);
-      await setDoc(musicDocRef, musicData);
+      // Step 4: Store metadata in Firestore
+      const docRef = doc(firestore, "music", `${user.uid}_${file.name}`); // Using a unique document ID
+      await setDoc(docRef, musicData);
 
-      showSuccess("Music metadata added to Firestore");
+      showSuccess("Music uploaded successfully!");
+      setFile(null);
     } catch (error) {
       console.error("Error uploading file or saving data:", error);
       showError(`Error: ${error.message}`);

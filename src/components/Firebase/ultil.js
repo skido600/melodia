@@ -1,7 +1,9 @@
+// Firebase/ultil.js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database";
-import { getStorage } from "firebase/storage"; // Import storage
+import { getDatabase } from "firebase/database"; // Realtime Database
+import { getFirestore } from "firebase/firestore"; // Firestore
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBR1ma2-qOhEGgUwA_su71ZE-smJiFhhPs",
@@ -13,9 +15,13 @@ const firebaseConfig = {
   measurementId: "G-H4QZ3KZST5",
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const auth = getAuth(app);
-const storage = getStorage(app);
 
-export { db, auth, storage };
+// Initialize services
+const db = getDatabase(app); // Realtime Database
+const auth = getAuth(app); // Authentication
+const firestore = getFirestore(app); // Firestore
+const storage = getStorage(app); // Storage
+
+export { db, auth, firestore, storage };
