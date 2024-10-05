@@ -1,16 +1,81 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import defaultProfile from "../../assets/image/images (5).png";
 import Nav from "./Nav";
+import { auth, storage, firestore } from "../Firebase/ultil"; // Ensure correct Firebase imports
+import {
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL,
+} from "firebase/storage";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { showError, showSuccess } from "../helper/Toast";
 
 function Profile() {
   const [profileImage, setProfileImage] = useState(defaultProfile);
+  const [user, setUser] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
-  // Function to handle image upload
-  const handleImageUpload = (e) => {
+  useEffect(() => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      setUser(currentUser);
+
+      // Fetch the profile picture from Firestore when the component mounts
+      const fetchProfilePicture = async () => {
+        try {
+          const userDocRef = doc(firestore, "users", currentUser.uid);
+          const userDoc = await getDoc(userDocRef);
+
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            if (userData.profilePicture) {
+              setProfileImage(userData.profilePicture); // Set the stored profile picture
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching profile picture:", error);
+          showError("Failed to load profile picture.");
+        }
+      };
+
+      fetchProfilePicture(); // Call the function to fetch the profile picture
+    }
+  }, []);
+
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file); // Create a temporary URL for the uploaded image
-      setProfileImage(imageUrl);
+      setIsUploading(true);
+
+      try {
+        // Step 1: Upload image to Firebase Storage
+        const storagePath = storageRef(
+          storage,
+          `profile_pics/${user.uid}_${file.name}`
+        );
+        await uploadBytes(storagePath, file);
+
+        // Step 2: Get the download URL
+        const downloadURL = await getDownloadURL(storagePath);
+
+        // Step 3: Update Firestore with the new profile picture URL
+        const userDocRef = doc(firestore, "users", user.uid);
+        await setDoc(
+          userDocRef,
+          {
+            profilePicture: downloadURL,
+          },
+          { merge: true } // Merge to prevent overwriting other fields
+        );
+
+        setProfileImage(downloadURL); // Update UI to reflect the uploaded image
+        showSuccess("Profile picture updated successfully!");
+      } catch (error) {
+        console.error("Error uploading profile picture:", error);
+        showError(`Error: ${error.message}`);
+      } finally {
+        setIsUploading(false);
+      }
     }
   };
 
@@ -39,18 +104,25 @@ function Profile() {
                 accept="image/*"
                 style={{ display: "none" }}
                 onChange={handleImageUpload}
+                disabled={isUploading} // Disable while uploading
               />
             </div>
-            <input
+
+            {/* <input
               type="text"
               className="bg-[#121212] w-full rounded-[9px] py-3 mb-2"
+              placeholder="Name"
             />
             <input
               type="text"
               className="bg-[#121212] rounded-[9px] w-full py-3"
-            />
-            <button className="w-full bg-green-500 py-3 mt-2 rounded-[9px]">
-              Save
+              placeholder="Email"
+            /> */}
+            <button
+              className="w-full bg-green-500 py-3 mt-2 rounded-[9px]"
+              disabled={isUploading} // Disable while uploading
+            >
+              {isUploading ? "Uploading..." : "Save"}
             </button>
             <button className="w-full bg-red-500 py-3 mt-2 md:text-[20px] rounded-[9px]">
               Delete my account

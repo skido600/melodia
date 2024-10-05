@@ -33,7 +33,25 @@ function Upload() {
   const handleUpload = async () => {
     if (!file) return;
 
-    const validTypes = ["audio/mpeg", "audio/wav"];
+    const validTypes = [
+      "audio/mpeg", // .mp3
+      "audio/wav", // .wav
+      "audio/ogg", // .ogg
+      "audio/flac", // .flac
+      "audio/aac", // .aac
+      "audio/m4a", // .m4a
+      "audio/x-wav", // .wav
+      "audio/x-aac", // .aac
+      "audio/mp4", // .mp4
+      "audio/midi", // .midi
+      "audio/x-midi", // .midi
+      "audio/x-ms-wma", // .wma
+      "audio/vnd.wav", // .wav
+      "audio/webm", // .webm
+      "audio/x-flac", // .flac
+      "audio/x-ogg", // .ogg
+    ];
+
     if (!validTypes.includes(file.type)) {
       showWarning("Please select a valid music file (mp3 or wav)");
       return;
@@ -106,12 +124,13 @@ function Upload() {
                     >
                       <input
                         type="file"
-                        accept=".mp3, .wav"
+                        accept="audio/*"
                         id="upload"
                         className="hidden"
                         onChange={handleFileChange}
                       />
-                      <div className="flex gap-3 justify-between border-[2px] text-white border-white border-dashed text-[1.2em] font-bold rounded-[10px] p-[8px] w-full">
+
+                      <div className="flex gap-3 overflow-hidden justify-between border-[2px] text-white border-white border-dashed text-[1.2em] font-bold rounded-[10px] p-[8px] w-full">
                         <h1 className="text-[12px]">Upload</h1>
                         <p className="text-[9px]">
                           {file ? file.name : "No file selected"}
