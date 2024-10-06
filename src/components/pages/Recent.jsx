@@ -3,11 +3,12 @@ import { collection, getDocs } from "firebase/firestore";
 import { firestore, storage } from "../Firebase/ultil";
 import { getDownloadURL, ref } from "firebase/storage";
 import logo from "../../assets/image/lolo.jpg";
+import Skeleton from "../Loader/Skeleton";
 
 function Recent({ onPlayMusic }) {
   const [musicList, setMusicList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // Added error state
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchMusic = async () => {
@@ -16,7 +17,7 @@ function Recent({ onPlayMusic }) {
         const musicSnapshot = await getDocs(musicCollection);
 
         if (musicSnapshot.empty) {
-          setError("No music documents found."); // Set error message
+          setError("No music documents found or check yur internet connection");
           setLoading(false);
           return;
         }
@@ -46,7 +47,7 @@ function Recent({ onPlayMusic }) {
             return {
               ...data,
               downloadURL: downloadURL,
-              coverImageUrl: coverImageUrl || logo, // Default image directly
+              coverImageUrl: coverImageUrl || logo,
             };
           })
         );
@@ -54,7 +55,7 @@ function Recent({ onPlayMusic }) {
         setMusicList(musicData);
       } catch (error) {
         console.error("Error fetching music data:", error);
-        setError("Failed to fetch music data."); // Set error message
+        setError("Failed to fetch music data.");
       } finally {
         setLoading(false);
       }
@@ -64,11 +65,11 @@ function Recent({ onPlayMusic }) {
   }, []);
 
   if (loading) {
-    return <p className="text-white">Loading...</p>;
+    return <Skeleton />;
   }
 
   if (error) {
-    return <p className="text-red-500">{error}</p>; // Display error message
+    return <p className="text-red-500">{error}</p>;
   }
 
   return (
@@ -108,10 +109,6 @@ function Recent({ onPlayMusic }) {
                   <p className="text-white text-[10px] ">
                     Uploaded by {music.username}
                   </p>
-                  {/* <p className="text-white text-[10px] md:text-[15px]">
-                    {music.timestamp?.toDate().toLocaleString() ||
-                      "Unknown Date"}
-                  </p> */}
                 </div>
               </a>
             </article>
