@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { showError, showSuccess, showWarning } from "../helper/Toast";
 import { db, auth, storage, firestore } from "../Firebase/ultil"; // Ensure firestore is imported
+import jsmediatags from "jsmediatags";
 import Nav from "./Nav";
 import {
   ref as storageRef,
@@ -13,7 +14,6 @@ import { ref as dbRef, get } from "firebase/database";
 function Upload() {
   const [file, setFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
-
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -34,22 +34,22 @@ function Upload() {
     if (!file) return;
 
     const validTypes = [
-      "audio/mpeg", // .mp3
-      "audio/wav", // .wav
-      "audio/ogg", // .ogg
-      "audio/flac", // .flac
-      "audio/aac", // .aac
-      "audio/m4a", // .m4a
-      "audio/x-wav", // .wav
-      "audio/x-aac", // .aac
-      "audio/mp4", // .mp4
-      "audio/midi", // .midi
-      "audio/x-midi", // .midi
-      "audio/x-ms-wma", // .wma
-      "audio/vnd.wav", // .wav
-      "audio/webm", // .webm
-      "audio/x-flac", // .flac
-      "audio/x-ogg", // .ogg
+      "audio/mpeg",
+      "audio/wav",
+      "audio/ogg",
+      "audio/flac",
+      "audio/aac",
+      "audio/m4a",
+      "audio/x-wav",
+      "audio/x-aac",
+      "audio/mp4",
+      "audio/midi",
+      "audio/x-midi",
+      "audio/x-ms-wma",
+      "audio/vnd.wav",
+      "audio/webm",
+      "audio/x-flac",
+      "audio/x-ogg",
     ];
 
     if (!validTypes.includes(file.type)) {
@@ -65,31 +65,86 @@ function Upload() {
     setIsUploading(true);
 
     try {
-      // Step 1: Upload the file to Firebase Cloud Storage
+      let coverImage = ""; // Initialize coverImage variable
+      let title = "Unknown Title";
+      let artist = "Unknown Artist";
+      let album = "Unknown Album";
+
+      // Extract metadata
+      jsmediatags.read(file, {
+        onSuccess: (tag) => {
+          ({ title, artist, album } = tag.tags); // Destructure directly from tag.tags
+          console.log(title, artist, album);
+
+          if (tag.tags.picture) {
+            const { data, format } = tag.tags.picture;
+            let base64String = "";
+            for (let i = 0; i < data.length; i++) {
+              base64String += String.fromCharCode(data[i]);
+            }
+            coverImage = `data:${format};base64,${window.btoa(base64String)}`;
+          }
+        },
+        onError: (error) => {
+          console.log(error);
+        },
+      });
+
+      // Upload the file to Firebase Cloud Storage
       const storagePath = storageRef(storage, `music/${user.uid}_${file.name}`); // Unique naming
       await uploadBytes(storagePath, file);
 
-      // Step 2: Get the download URL
+      // Get the download URL
       const downloadURL = await getDownloadURL(storagePath);
 
-      // Fetch username from Realtime Database (if needed)
+      // Fetch username from Realtime Database
       const userRef = dbRef(db, `users/${user.uid}`);
       const userSnapshot = await get(userRef);
       const username = userSnapshot.exists()
         ? userSnapshot.val().name
         : "Unknown User";
 
-      // Step 3: Prepare metadata for Firestore
+      // Prepare metadata for Firestore
       const musicData = {
         username: username,
         uid: user.uid,
+        title: title, // Store title in musicData
+        artist: artist, // Store artist in musicData
+        album: album, // Store album in musicData
         uploadLink: downloadURL,
         timestamp: serverTimestamp(),
         rank: 0,
         status: "public",
       };
 
-      // Step 4: Store metadata in Firestore
+      // If coverImage exists, upload it to Firebase Storage
+      if (coverImage) {
+        console.log(coverImage);
+        const coverImageBlob = await fetch(coverImage).then((res) =>
+          res.blob()
+        );
+
+        // Convert Blob to File
+        const coverImageFile = new File(
+          [coverImageBlob],
+          `${title}_cover.${coverImage.split(";")[0].split("/")[1]}`,
+          { type: coverImage.split(";")[0] }
+        );
+
+        const coverStoragePath = storageRef(
+          storage,
+          `coverImages/${user.uid}_${file.name.split(".")[0]}_cover.${
+            coverImage.split(";")[0].split("/")[1]
+          }`
+        );
+        await uploadBytes(coverStoragePath, coverImageFile); // Uploading the File instead of Blob
+        const coverImageUrl = await getDownloadURL(coverStoragePath);
+
+        // Add coverImageUrl to musicData
+        musicData.coverImageUrl = coverImageUrl; // Store cover image URL in musicData
+      }
+
+      // Store metadata in Firestore
       const docRef = doc(firestore, "music", `${user.uid}_${file.name}`); // Using a unique document ID
       await setDoc(docRef, musicData);
 
@@ -129,7 +184,6 @@ function Upload() {
                         className="hidden"
                         onChange={handleFileChange}
                       />
-
                       <div className="flex gap-3 overflow-hidden justify-between border-[2px] text-white border-white border-dashed text-[1.2em] font-bold rounded-[10px] p-[8px] w-full">
                         <h1 className="text-[12px]">Upload</h1>
                         <p className="text-[9px]">

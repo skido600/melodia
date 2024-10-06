@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { firestore, storage } from "../Firebase/ultil";
 import { getDownloadURL, ref } from "firebase/storage";
+import logo from "../../assets/image/lolo.jpg";
 
-function Recent() {
+function Recent({ onPlayMusic }) {
   const [musicList, setMusicList] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,18 +25,32 @@ function Recent() {
             const data = { id: doc.id, ...doc.data() };
             const musicRef = ref(storage, `music/${data.id}`);
 
-            // Get the download URL for the audio file
+            let downloadURL = null;
             try {
-              const url = await getDownloadURL(musicRef);
-              return { ...data, downloadURL: url }; // Return data with download URL
+              downloadURL = await getDownloadURL(musicRef);
             } catch (urlError) {
               console.error("Error fetching download URL:", urlError);
-              return { ...data, downloadURL: null }; // Return data with null URL if error
             }
+
+            let coverImageUrl = null;
+            if (data.coverImageUrl) {
+              const coverRef = ref(storage, data.coverImageUrl);
+              try {
+                coverImageUrl = await getDownloadURL(coverRef);
+              } catch (coverError) {
+                console.error("Error fetching cover image URL:", coverError);
+              }
+            }
+
+            return {
+              ...data,
+              downloadURL: downloadURL,
+              coverImageUrl: coverImageUrl || "path/to/default/image.jpg",
+            };
           })
         );
 
-        setMusicList(musicData); // Update the state with music data
+        setMusicList(musicData);
       } catch (error) {
         console.error("Error fetching music data:", error);
       } finally {
@@ -62,7 +77,19 @@ function Recent() {
           {musicList.map((music) => (
             <article key={music.id} className="mt-4 flex-shrink-0 w-[150px]">
               <div className="text mt-4 ml-4">
-                <p className="text-white text-xl font-bold">Unknown Title</p>
+                {music.coverImageUrl && (
+                  <img
+                    src={music.coverImageUrl || logo}
+                    alt={music.title || "Album Cover"}
+                    className="mb-2 rounded-lg"
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                )}
+                <p className="text-white text-xl font-bold">
+                  {music.title && music.title.length > 7
+                    ? `${music.title.substring(0, 7)}...`
+                    : music.title || "Unknown Title"}
+                </p>
                 <p className="text-white text-[10px] md:text-[15px]">
                   Uploaded by {music.username}
                 </p>
@@ -71,10 +98,18 @@ function Recent() {
                 </p>
                 {music.downloadURL && (
                   <a
-                    href={music.downloadURL}
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onPlayMusic(
+                        music.downloadURL,
+                        music.coverImageUrl,
+                        music.title
+                      );
+                    }}
                     className="text-blue-500 underline"
                   >
-                    play
+                    Play
                   </a>
                 )}
               </div>
