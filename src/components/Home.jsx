@@ -65,7 +65,7 @@ function Home() {
 
           {/* Audio Element */}
           <div
-            className={`text-white bg-[#1f1a1a] fixed bottom-0 ${
+            className={`text-white bg-[#838080] fixed bottom-0 ${
               toggle ? "w-[95vw]" : "px-4 w-[75vw]"
             } flex gap-8 items-center z-20 bg-black p-2`}
           >
