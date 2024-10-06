@@ -69,18 +69,16 @@ function Home() {
               toggle ? "w-[95vw]" : "px-4 w-[75vw]"
             } flex gap-8 items-center z-20 bg-black p-2`}
           >
-            {currentCover && (
-              <img
-                src={currentCover}
-                alt="Current Cover"
-                className="mt-2 rounded-lg"
-                style={{ width: "50px", height: "50px", objectFit: "cover" }} // Adjust size as needed
-              />
-            )}
+            <img
+              src={currentCover}
+              alt="Current Cover"
+              className="mt-2 rounded-lg"
+              style={{ width: "50px", height: "50px", objectFit: "cover" }} // Adjust size as needed
+            />
+
             <div>
-              {currentTitle && (
-                <p className="text-white text-[10px] mt-2">{currentTitle}</p>
-              )}
+              <p className="text-white text-[10px] mt-2">{currentTitle}</p>
+
               <audio
                 className="w-[100%] mt-4" // Make the audio player full width
                 src={currentAudio}

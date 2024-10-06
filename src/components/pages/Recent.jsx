@@ -7,6 +7,7 @@ import logo from "../../assets/image/lolo.jpg";
 function Recent({ onPlayMusic }) {
   const [musicList, setMusicList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // Added error state
 
   useEffect(() => {
     const fetchMusic = async () => {
@@ -15,7 +16,7 @@ function Recent({ onPlayMusic }) {
         const musicSnapshot = await getDocs(musicCollection);
 
         if (musicSnapshot.empty) {
-          console.log("No music documents found.");
+          setError("No music documents found."); // Set error message
           setLoading(false);
           return;
         }
@@ -45,7 +46,7 @@ function Recent({ onPlayMusic }) {
             return {
               ...data,
               downloadURL: downloadURL,
-              coverImageUrl: coverImageUrl || "path/to/default/image.jpg",
+              coverImageUrl: coverImageUrl || logo, // Default image directly
             };
           })
         );
@@ -53,6 +54,7 @@ function Recent({ onPlayMusic }) {
         setMusicList(musicData);
       } catch (error) {
         console.error("Error fetching music data:", error);
+        setError("Failed to fetch music data."); // Set error message
       } finally {
         setLoading(false);
       }
@@ -63,6 +65,10 @@ function Recent({ onPlayMusic }) {
 
   if (loading) {
     return <p className="text-white">Loading...</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-500">{error}</p>; // Display error message
   }
 
   return (
@@ -76,43 +82,38 @@ function Recent({ onPlayMusic }) {
         <main className="flex space-x-4 overflow-x-auto scrollbar overflow-y-hidden py-4">
           {musicList.map((music) => (
             <article key={music.id} className="mt-4 flex-shrink-0 w-[150px]">
-              <div className="text mt-4 ml-4">
-                {music.coverImageUrl && (
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onPlayMusic(
+                    music.downloadURL,
+                    music.coverImageUrl,
+                    music.title
+                  );
+                }}
+                className=""
+              >
+                <div className="text mt-4 ml-4">
                   <img
-                    src={music.coverImageUrl || logo}
+                    src={music.coverImageUrl}
                     alt={music.title || "Album Cover"}
-                    className="mb-2 rounded-lg"
-                    style={{ width: "100%", height: "auto" }}
+                    className="w-full h-[20vh] md:h-[10rem] object-cover rounded-2xl"
                   />
-                )}
-                <p className="text-white text-xl font-bold">
-                  {music.title && music.title.length > 7
-                    ? `${music.title.substring(0, 7)}...`
-                    : music.title || "Unknown Title"}
-                </p>
-                <p className="text-white text-[10px] md:text-[15px]">
-                  Uploaded by {music.username}
-                </p>
-                <p className="text-white text-[10px] md:text-[15px]">
-                  {music.timestamp?.toDate().toLocaleString() || "Unknown Date"}
-                </p>
-                {music.downloadURL && (
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onPlayMusic(
-                        music.downloadURL,
-                        music.coverImageUrl,
-                        music.title
-                      );
-                    }}
-                    className="text-blue-500 underline"
-                  >
-                    Play
-                  </a>
-                )}
-              </div>
+                  <p className="text-white text-xl font-bold">
+                    {music.title && music.title.length > 7
+                      ? `${music.title.substring(0, 7)}...`
+                      : music.title || "Unknown Title"}
+                  </p>
+                  <p className="text-white text-[10px] ">
+                    Uploaded by {music.username}
+                  </p>
+                  {/* <p className="text-white text-[10px] md:text-[15px]">
+                    {music.timestamp?.toDate().toLocaleString() ||
+                      "Unknown Date"}
+                  </p> */}
+                </div>
+              </a>
             </article>
           ))}
         </main>
