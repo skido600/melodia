@@ -65,15 +65,15 @@ function Upload() {
     setIsUploading(true);
 
     try {
-      let coverImage = ""; // Initialize coverImage variable
+      let coverImage = "";
       let title = "Unknown Title";
       let artist = "Unknown Artist";
       let album = "Unknown Album";
 
-      // Extract metadata
+      // Extract metadata using jsmediatags
       jsmediatags.read(file, {
         onSuccess: (tag) => {
-          ({ title, artist, album } = tag.tags); // Destructure directly from tag.tags
+          ({ title, artist, album } = tag.tags);
           console.log(title, artist, album);
 
           if (tag.tags.picture) {
@@ -108,16 +108,15 @@ function Upload() {
       const musicData = {
         username: username,
         uid: user.uid,
-        title: title, // Store title in musicData
-        artist: artist, // Store artist in musicData
-        album: album, // Store album in musicData
+        title: title,
+        artist: artist,
+        album: album,
         uploadLink: downloadURL,
         timestamp: serverTimestamp(),
         rank: 0,
         status: "public",
       };
 
-      // If coverImage exists, upload it to Firebase Storage
       if (coverImage) {
         console.log(coverImage);
         const coverImageBlob = await fetch(coverImage).then((res) =>

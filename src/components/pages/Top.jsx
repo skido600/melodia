@@ -8,7 +8,6 @@ function Top() {
   const [topList, setTopList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const audioRef = useRef(null); // Create a ref for the audio element
 
   useEffect(() => {
     const fetchTopItems = async () => {
@@ -92,7 +91,7 @@ function Top() {
 
   return (
     <>
-      <audio ref={audioRef} controls style={{ display: "none" }} />
+      <audio />
       <div className="mt-4 flex space-x-4">
         <h1 className="text-white text-[18px] md:text-3xl">Top six</h1>
       </div>

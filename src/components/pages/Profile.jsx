@@ -38,7 +38,7 @@ function Profile() {
         }
       };
 
-      fetchProfilePicture(); // Call the function to fetch the profile picture
+      fetchProfilePicture();
     }
   }, []);
 
@@ -48,24 +48,24 @@ function Profile() {
       setIsUploading(true);
 
       try {
-        // Step 1: Upload image to Firebase Storage
+        //  Upload image
         const storagePath = storageRef(
           storage,
           `profile_pics/${user.uid}_${file.name}`
         );
         await uploadBytes(storagePath, file);
 
-        // Step 2: Get the download URL
+        // Get the download URL
         const downloadURL = await getDownloadURL(storagePath);
 
-        // Step 3: Update Firestore with the new profile picture URL
+        //  Update Firestore with the new profile picture URL
         const userDocRef = doc(firestore, "users", user.uid);
         await setDoc(
           userDocRef,
           {
             profilePicture: downloadURL,
           },
-          { merge: true } // Merge to prevent overwriting other fields
+          { merge: true } // Merge to prevent overwriting
         );
 
         setProfileImage(downloadURL); // Update UI to reflect the uploaded image
@@ -120,7 +120,7 @@ function Profile() {
             /> */}
             <button
               className="w-full bg-green-500 py-3 mt-2 rounded-[9px]"
-              disabled={isUploading} // Disable while uploading
+              disabled={isUploading}
             >
               {isUploading ? "Uploading..." : "Save"}
             </button>

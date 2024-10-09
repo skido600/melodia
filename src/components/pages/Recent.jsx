@@ -4,8 +4,10 @@ import { firestore, storage } from "../Firebase/ultil";
 import { getDownloadURL, ref } from "firebase/storage";
 import logo from "../../assets/image/lolo.jpg";
 import Skeleton from "../Loader/Skeleton";
+import { useMusicContext } from "../Context/MusicContext";
 
-function Recent({ onPlayMusic }) {
+function Recent() {
+  const { onPlayMusic } = useMusicContext(); // Get onPlayMusic from context
   const [musicList, setMusicList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +19,7 @@ function Recent({ onPlayMusic }) {
         const musicSnapshot = await getDocs(musicCollection);
 
         if (musicSnapshot.empty) {
-          setError("No music documents found or check yur internet connection");
+          setError("No music documents found.");
           setLoading(false);
           return;
         }
@@ -93,7 +95,6 @@ function Recent({ onPlayMusic }) {
                     music.title
                   );
                 }}
-                className=""
               >
                 <div className="text mt-4 ml-4">
                   <img
@@ -106,7 +107,7 @@ function Recent({ onPlayMusic }) {
                       ? `${music.title.substring(0, 7)}...`
                       : music.title || "Unknown Title"}
                   </p>
-                  <p className="text-white text-[10px] ">
+                  <p className="text-white text-[10px]">
                     Uploaded by {music.username}
                   </p>
                 </div>
