@@ -58,7 +58,7 @@ function Upload() {
     }
 
     if (!user) {
-      showWarning("User is not authenticated");
+      showWarning("User is not authenticated try relogin");
       return;
     }
 

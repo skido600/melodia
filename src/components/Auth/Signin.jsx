@@ -18,7 +18,6 @@ import {
 import { auth, db } from "../Firebase/ultil";
 import { ref, set } from "firebase/database";
 import toast from "react-hot-toast";
-import Rolling from "../Loader/Rolling";
 
 const errorMap = {
   "auth/invalid-email": "The email address is badly formatted.",

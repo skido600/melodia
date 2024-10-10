@@ -1,8 +1,8 @@
 // Firebase/ultil.js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database"; // Realtime Database
-import { getFirestore } from "firebase/firestore"; // Firestore
+import { getDatabase } from "firebase/database";
+import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {

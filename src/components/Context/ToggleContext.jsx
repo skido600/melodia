@@ -1,6 +1,5 @@
 import React, { createContext, useState } from "react";
 
-// Create the Toggle Context
 export const ToggleContext = createContext();
 
 // Create a provider component

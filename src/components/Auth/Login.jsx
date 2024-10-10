@@ -37,7 +37,7 @@ function Login() {
         if (user.emailVerified) {
           localStorage.setItem("account_active", "true");
           toast.success("Logged in successfully");
-          navigate("/home");
+          navigate("/homepage/home");
         } else {
           <div>Please verify your email before logging in</div>;
           toast.error("Please verify your email before logging in.");
@@ -52,6 +52,9 @@ function Login() {
             break;
           case "auth/user-not-found":
             errorMessage = "User not found";
+            break;
+          case "auth/network-request-failed":
+            errorMessage = "opps check your internet connection nd try again";
             break;
           case "auth/wrong-password":
             errorMessage = "Incorrect password";

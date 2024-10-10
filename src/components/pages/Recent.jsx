@@ -67,11 +67,11 @@ function Recent() {
   }, []);
 
   if (loading) {
-    return <Skeleton />;
+    return <Skeleton />; // Loading skeleton for fetching music
   }
 
   if (error) {
-    return <p className="text-red-500">{error}</p>;
+    return <p className="text-red-500">{error}</p>; // Error message
   }
 
   return (
@@ -93,7 +93,7 @@ function Recent() {
                     music.downloadURL,
                     music.coverImageUrl,
                     music.title
-                  );
+                  ); // Play music
                 }}
               >
                 <div className="text mt-4 ml-4">

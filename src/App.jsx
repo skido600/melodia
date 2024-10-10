@@ -2,13 +2,11 @@ import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Loader from "./components/Loader/Loader";
 import PlayMusic from "./components/pages/PlayMusic";
-import { MusicProvider } from "./components/Context/MusicContext"; // Ensure the correct import path
-import { ToggleProvider } from "./components/Context/ToggleContext"; // Import the ToggleProvider
+import { MusicProvider } from "./components/Context/MusicContext";
+import { ToggleProvider } from "./components/Context/ToggleContext";
+import NotFound from "./components/pages/NotFound"; // Import the NotFound component
 
-const Signin = lazy(() => import("./components/Auth/Signin"));
-const Login = lazy(() => import("./components/Auth/Login"));
 const Home = lazy(() => import("./components/Home"));
-const Loginm = lazy(() => import("./components/Loader/Loginm"));
 const Upload = lazy(() => import("./components/pages/Upload"));
 const Search = lazy(() => import("./components/pages/Search"));
 const Profile = lazy(() => import("./components/pages/Profile"));
@@ -19,13 +17,11 @@ function App() {
       <ToggleProvider>
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/" element={<Loginm />} />
-            <Route path="/sign" element={<Signin />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/search" element={<Search />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/user" element={<Profile />} />
+            <Route path="*" element={<NotFound />} />{" "}
           </Routes>
         </Suspense>
         <PlayMusic />

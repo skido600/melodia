@@ -5,6 +5,7 @@ import { auth } from "../Firebase/ultil";
 import Home from "../Home";
 import HomesL from "./HomesL";
 import Loader from "./Loader";
+import PlayMusic from "../pages/PlayMusic";
 
 function Loginm() {
   const [loader, setLoader] = useState(true); // State to manage loading screen
@@ -40,7 +41,13 @@ function Loginm() {
   }
 
   if (isActive) {
-    return <Home />;
+    // Wrap Home and PlayMusic in a parent element like a fragment or div
+    return (
+      <>
+        <Home />
+        <PlayMusic />
+      </>
+    );
   } else {
     return <HomesL />;
   }

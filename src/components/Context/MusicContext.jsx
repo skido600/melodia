@@ -1,24 +1,31 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
-// Create the Music Context
 const MusicContext = createContext();
 
-// Create a provider component
+export const useMusicContext = () => useContext(MusicContext);
+
 export const MusicProvider = ({ children }) => {
-  const [currentSong, setCurrentSong] = useState(null); // This will hold the selected song
+  const [currentSong, setCurrentSong] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const onPlayMusic = (downloadURL, coverImageUrl, title) => {
     setCurrentSong({ downloadURL, coverImageUrl, title });
+    setIsPlaying(true); // Automatically start playing
+  };
+
+  const pauseMusic = () => {
+    setIsPlaying(false);
+  };
+
+  const value = {
+    currentSong,
+    isPlaying,
+    onPlayMusic,
+    pauseMusic,
+    setIsPlaying,
   };
 
   return (
-    <MusicContext.Provider value={{ currentSong, onPlayMusic }}>
-      {children}
-    </MusicContext.Provider>
+    <MusicContext.Provider value={value}>{children}</MusicContext.Provider>
   );
-};
-
-// Custom hook to use the Music Context
-export const useMusicContext = () => {
-  return useContext(MusicContext);
 };
