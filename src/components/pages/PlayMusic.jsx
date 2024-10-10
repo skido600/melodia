@@ -3,12 +3,13 @@ import { CiPlay1, CiPause1 } from "react-icons/ci";
 import { BiSkipNext } from "react-icons/bi";
 import { useMusicContext } from "../Context/MusicContext";
 import melodia from "../../assets/image/lolo.jpg";
-import { ToggleContext } from "../Context/ToggleContext"; // Import the ToggleContext
+import { ToggleContext } from "../Context/ToggleContext";
 const PlayMusic = () => {
   const { toggle } = useContext(ToggleContext);
   const { currentSong, isPlaying, setIsPlaying } = useMusicContext(); // Access the current song and play state
   const audioRef = useRef(null);
 
+  console.log(toggle);
   // Handle play/pause toggle
   const handlePlayPause = () => {
     if (isPlaying) {

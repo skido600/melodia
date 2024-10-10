@@ -13,8 +13,8 @@ const Profile = lazy(() => import("./components/pages/Profile"));
 
 function App() {
   return (
-    <ToggleProvider>
-      <MusicProvider>
+    <MusicProvider>
+      <ToggleProvider>
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -25,8 +25,8 @@ function App() {
           </Routes>
         </Suspense>
         <PlayMusic />
-      </MusicProvider>
-    </ToggleProvider>
+      </ToggleProvider>
+    </MusicProvider>
   );
 }
 
