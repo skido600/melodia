@@ -3,7 +3,7 @@ import Recent from "../components/pages/Recent";
 import Top from "../components/pages/Top";
 import { CgProfile } from "react-icons/cg";
 import Nav from "./pages/Nav";
-import Developers from "./pages/Developers";
+import Developers from "./pages/Developers"; // Ensure the correct import path
 import { ToggleContext } from "../components/Context/ToggleContext";
 
 function Home() {
@@ -16,7 +16,9 @@ function Home() {
       </div>
 
       <section
-        className={`col-span-3 ${toggle && "col-span-4 h-screen ml-[1.4rem]"}`}
+        className={`col-span-3 ${
+          toggle ? "col-span-4 h-screen ml-[1.4rem]" : ""
+        }`}
       >
         <nav
           className={`text-white fixed ${
@@ -36,6 +38,7 @@ function Home() {
             size={50}
             className="cursor-pointer"
             onClick={HandleToggle}
+            title={toggle ? "Show Nav" : "Hide Nav"} // Accessibility
           />
         </nav>
 

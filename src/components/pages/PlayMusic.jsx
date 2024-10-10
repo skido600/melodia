@@ -7,7 +7,7 @@ import { ToggleContext } from "../Context/ToggleContext"; // Import the ToggleCo
 const PlayMusic = () => {
   const { toggle } = useContext(ToggleContext);
   const { currentSong, isPlaying, setIsPlaying } = useMusicContext(); // Access the current song and play state
-  const audioRef = useRef(null); // Reference to the audio element
+  const audioRef = useRef(null);
 
   // Handle play/pause toggle
   const handlePlayPause = () => {
