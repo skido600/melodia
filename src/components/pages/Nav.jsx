@@ -26,7 +26,7 @@ function Nav() {
     <section className="fixed text-white md:bg-[#121212] w-[25%] top-0 bottom-0 p-5 flex flex-col justify-between">
       <div>
         <div
-          onClick={() => handleNavigation("/")}
+          onClick={() => handleNavigation("/homepage/")}
           className="md:flex items-start space-x-2 cursor-pointer"
         >
           <img
@@ -41,7 +41,7 @@ function Nav() {
         <div className="flex flex-col space-y-4">
           <div
             className="md:flex items-center space-x-2 cursor-pointer"
-            onClick={() => handleNavigation("/homepage/home")}
+            onClick={() => handleNavigation("/homepage/")}
           >
             <CiHome size={30} className="text-green-400 w-8 h-8" />
             <p className="hidden md:block text-green-400 text-xl font-bold">

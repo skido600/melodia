@@ -17,7 +17,7 @@ function App() {
       <ToggleProvider>
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/user" element={<Profile />} />

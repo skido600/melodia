@@ -37,7 +37,7 @@ function Login() {
         if (user.emailVerified) {
           localStorage.setItem("account_active", "true");
           toast.success("Logged in successfully");
-          navigate("/homepage/home");
+          navigate("/homepage/");
         } else {
           <div>Please verify your email before logging in</div>;
           toast.error("Please verify your email before logging in.");
