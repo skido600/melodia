@@ -9,6 +9,7 @@ import { ToggleContext } from "../components/Context/ToggleContext";
 function Home() {
   const { toggle, HandleToggle } = useContext(ToggleContext);
 
+  console.log(toggle ? "on" : "off");
   return (
     <main className="grid bg-black grid-cols-4">
       <div className={`${toggle ? "hidden" : "col-span-1 h-screen"}`}>

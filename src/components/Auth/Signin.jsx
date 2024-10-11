@@ -203,7 +203,7 @@ function Signin() {
               <div>
                 <p>
                   Already have an account?{" "}
-                  <Link to="/login" className="text-blue-600 text-[15px]">
+                  <Link to="/" className="text-blue-600 text-[15px]">
                     Log In
                   </Link>
                 </p>

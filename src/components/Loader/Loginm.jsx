@@ -5,15 +5,13 @@ import { auth } from "../Firebase/ultil";
 import Home from "../Home";
 import HomesL from "./HomesL";
 import Loader from "./Loader";
-import PlayMusic from "../pages/PlayMusic";
 
 function Loginm() {
-  const [loader, setLoader] = useState(true); // State to manage loading screen
-  const [user, setUser] = useState(null); // State to store Firebase user
-  const [isActive, setIsActive] = useState(false); // State to track account active status
+  const [loader, setLoader] = useState(true);
+  const [user, setUser] = useState(null);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    // Check localStorage on mount to see if the account is already active
     const accountActive = localStorage.getItem("account_active");
     if (accountActive === "true") {
       setIsActive(true);
@@ -41,13 +39,7 @@ function Loginm() {
   }
 
   if (isActive) {
-    // Wrap Home and PlayMusic in a parent element like a fragment or div
-    return (
-      <>
-        <Home />
-        <PlayMusic />
-      </>
-    );
+    return <Home />;
   } else {
     return <HomesL />;
   }
