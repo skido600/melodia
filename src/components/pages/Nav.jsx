@@ -15,7 +15,7 @@ function Nav() {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
-      navigate("/");
+      navigate("/login");
       toast.success("successfully logged out");
     } catch (error) {
       toast.error(error);
